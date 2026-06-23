@@ -1,4 +1,4 @@
-# software-blueprint-ai — AI Software Architecture Assistant
+# Software-blueprint-ai — AI Software Architecture Assistant
 
 An AI-powered multi-agent system that generates complete software architecture blueprints from a single project title. Built with Python, Flask, and Google Gemini API.
 
@@ -51,11 +51,11 @@ Users can also refine any blueprint using natural language — "Add payment gate
 
 ### Home Page
 
-![Home Page](screenshots/home)
+![Home Page](screenshots/home.png)
 
 ### Generated Blueprint
 
-![Blueprint Output](screenshots/blueprint)
+![Blueprint Output](screenshots/blueprint.png)
 ## Author
 
 **Muhammad Ahsan** — [GitHub](https://github.com/im-ahsanbilal) | [Portfolio](https://imahsanbilal.pythonanywhere.com)
