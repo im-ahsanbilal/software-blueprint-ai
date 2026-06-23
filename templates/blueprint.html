@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint - {{ project_title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a1a;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(5%) translateY(-5%); }
+            50% { transform: translateX(-5%) translateY(5%); }
+            75% { transform: translateX(5%) translateY(5%); }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 230px 80px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 350px 200px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 420px 50px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 500px 180px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 580px 90px, rgba(255,255,255,0.2), transparent);
+            background-size: 600px 300px;
+            animation: particles 20s linear infinite;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        @keyframes particles {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-300px); }
+        }
+
+        .navbar {
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientText 5s ease-in-out infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-tabs {
+            border: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-tabs .nav-link {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            margin-right: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .nav-tabs .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .tab-content {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .markdown-content {
+            color: #e0e0e0;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .markdown-content h1,
+        .markdown-content h2,
+        .markdown-content h3,
+        .markdown-content h4 {
+            color: #ffffff;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .markdown-content ul,
+        .markdown-content ol {
+            padding-left: 1.5rem;
+        }
+
+        .markdown-content strong {
+            color: #a78bfa;
+        }
+
+        .markdown-content p {
+            margin-bottom: 0.75rem;
+        }
+
+        .refine-section {
+            max-width: 800px;
+            margin: 4rem auto 2rem;
+            padding: 0 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .refine-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .refine-section p {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        /* Fixed textarea - dark bg with white text */
+        .refine-form textarea,
+        .refine-form textarea.form-control {
+            background: #1a1a2e !important;
+            border: 2px solid rgba(102, 126, 234, 0.4) !important;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            font-size: 1rem;
+            color: #ffffff !important;
+            caret-color: #ffffff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            resize: vertical;
+            min-height: 120px;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .refine-form textarea:focus,
+        .refine-form textarea.form-control:focus {
+            background: #1e1e35 !important;
+            border-color: #667eea !important;
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.3) !important;
+            outline: none;
+            color: #ffffff !important;
+        }
+
+        .refine-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .btn-refine {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+        }
+
+        .btn-refine:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .btn-refine:active { transform: translateY(-1px); }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        .footer span {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .nav-tabs .nav-link { padding: 0.75rem 1rem; font-size: 0.9rem; }
+            .tab-content { padding: 1.5rem; }
+            .refine-section h2 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">BlueprintAI</a>
+            <span class="tagline ms-auto">AI-Powered Software Architecture</span>
+        </div>
+    </nav>
+
+    <div class="header">
+        <h1>Blueprint for: {{ project_title }}</h1>
+    </div>
+
+    <div class="tabs-container">
+        <ul class="nav nav-tabs" id="blueprintTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="requirements-tab" data-bs-toggle="tab" data-bs-target="#requirements" type="button" role="tab">
+                    📋 Requirements
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="database-tab" data-bs-toggle="tab" data-bs-target="#database" type="button" role="tab">
+                    🗄️ Database
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="risks-tab" data-bs-toggle="tab" data-bs-target="#risks" type="button" role="tab">
+                    ⚠️ Risk Analysis
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="roadmap-tab" data-bs-toggle="tab" data-bs-target="#roadmap" type="button" role="tab">
+                    🗺️ Roadmap
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="blueprintTabsContent">
+            <div class="tab-pane fade show active" id="requirements" role="tabpanel">
+                <div class="markdown-content" id="requirements-content"></div>
+            </div>
+            <div class="tab-pane fade" id="database" role="tabpanel">
+                <div class="markdown-content" id="database-content"></div>
+            </div>
+            <div class="tab-pane fade" id="risks" role="tabpanel">
+                <div class="markdown-content" id="risks-content"></div>
+            </div>
+            <div class="tab-pane fade" id="roadmap" role="tabpanel">
+                <div class="markdown-content" id="roadmap-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="refine-section">
+        <h2>Refine Your Blueprint</h2>
+        <p>Request changes and the AI will update all affected sections</p>
+
+        <form class="refine-form" action="/refine" method="POST">
+            <div class="mb-3">
+                <textarea
+                    name="change_request"
+                    placeholder="e.g. Add user authentication with OAuth2 support"
+                    required
+                ></textarea>
+            </div>
+            <input type="hidden" name="project_title" value="{{ project_title }}">
+            <input type="hidden" name="requirements" value="{{ requirements }}">
+            <input type="hidden" name="database" value="{{ database }}">
+            <input type="hidden" name="risks" value="{{ risks }}">
+            <input type="hidden" name="roadmap" value="{{ roadmap }}">
+            <button type="submit" class="btn btn-refine">Apply Changes →</button>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <p>Powered by <span>BlueprintAI</span></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        var requirements = {{ requirements | tojson }};
+        var database = {{ database | tojson }};
+        var risks = {{ risks | tojson }};
+        var roadmap = {{ roadmap | tojson }};
+
+        document.getElementById('requirements-content').innerHTML = marked.parse(requirements);
+        document.getElementById('database-content').innerHTML = marked.parse(database);
+        document.getElementById('risks-content').innerHTML = marked.parse(risks);
+        document.getElementById('roadmap-content').innerHTML = marked.parse(roadmap);
+    </script>
+</body>
+</html>
