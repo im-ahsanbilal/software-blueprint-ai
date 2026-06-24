@@ -4,6 +4,8 @@
 
 Software Blueprint AI is an AI-powered multi-agent system that transforms a simple project idea into a complete software architecture blueprint. The platform automatically generates requirements, database designs, risk assessments, and development roadmaps using specialized AI agents powered by Google Gemini.
 
+## 🚀 Live Demo
+👉 [Try it here](https://ahsanbilal.pythonanywhere.com)
 ---
 
 ## Features
